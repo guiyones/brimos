@@ -1,10 +1,9 @@
 services:
-
   mysql:
     image: mysql:5.7
-    container_name: mysqldocker
-    platform: linux/amd64
+    container_name: mysql
     restart: always
+    platform: linux/amd64
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: brimos
