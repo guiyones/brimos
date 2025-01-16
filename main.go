@@ -3,19 +3,70 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"time"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/google/uuid"
 )
 
+type Weight float64
+
 type Product struct {
 	ID     string
 	Name   string
 	Price  float64
-	Weight int
+	Weight Weight
 }
 
-func NewProduct(name string, price float64, weight int) *Product {
+type Client struct {
+	ID   string
+	Name string
+}
+
+type Sale struct {
+	ID                string
+	Client            Client
+	SaleDate          time.Time
+	Products          []Product
+	ProductQuantity   []float64
+	ProductTotalPrice []float64
+	Discount          float64
+	Freight           float64
+	SaleTotalPrice    float64
+	Payment           Payment
+}
+
+type BankAccount struct {
+	ID             string
+	Name           string
+	AccountBalance float64
+}
+
+type Payment struct {
+	ID          string
+	BankAccount BankAccount
+	PaymentType string
+	PayDate     time.Time
+	DueDate     time.Time
+	Status      bool
+}
+
+// type SaleProduct struct {
+// 	Sale       Sale
+// 	Product    Product
+// 	Quantity   float64
+// 	TotalPrice float64
+// }
+
+// type Sale struct {
+// 	ID        string
+// 	Products  []SaleProduct2
+// 	Client    Client
+// 	SaleDate  time.Time
+// 	SalePrice float64
+// }
+
+func NewProduct(name string, price float64, weight Weight) *Product {
 	return &Product{
 		ID:     uuid.New().String(),
 		Name:   name,
