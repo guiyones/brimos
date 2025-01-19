@@ -9,13 +9,11 @@ import (
 	"github.com/google/uuid"
 )
 
-type Weight float64
-
 type Product struct {
 	ID     string
 	Name   string
 	Price  float64
-	Weight Weight
+	Weight float64
 }
 
 type Client struct {
@@ -66,7 +64,7 @@ type Payment struct {
 // 	SalePrice float64
 // }
 
-func NewProduct(name string, price float64, weight Weight) *Product {
+func NewProduct(name string, price float64, weight float64) *Product {
 	return &Product{
 		ID:     uuid.New().String(),
 		Name:   name,
