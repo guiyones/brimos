@@ -20,6 +20,21 @@ type Product struct {
 	Price float64   `json:"price"`
 }
 
+func NewProduct(name string, price float64) (*Product, error) {
+	product := &Product{
+		ID:    entity.NewID(),
+		Name:  name,
+		Price: price,
+	}
+
+	err := product.Validate()
+	if err != nil {
+		return nil, err
+	}
+
+	return product, nil
+}
+
 func (p *Product) Validate() error {
 	if p.ID.String() == "" {
 		return ErrIDIsRequired
@@ -33,7 +48,7 @@ func (p *Product) Validate() error {
 		return ErrNameIsRequired
 	}
 
-	if p.Price == 0 {
+	if p.Price == 0.0 {
 		return ErrInvalidPrice
 	}
 
