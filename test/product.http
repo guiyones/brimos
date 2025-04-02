@@ -1,0 +1,30 @@
+POST http://localhost:8000/products HTTP/1.1
+Content-Type: application/json
+
+{
+    "name":"Coalhada Sal",
+    "price":6.20
+}
+
+###
+
+GET http://localhost:8000/products/98dad379-a724-48dc-9a66-4baff4378b9f HTTP/1.1
+
+###
+
+GET http://localhost:8000/products HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzk0ODk2ODcsInN1YiI6ImQ2YzMwN2QyLTljY2ItNDljYi1iYWUyLTUxODEyZGM1ZjFjMiJ9.-vfAoyaXwfWT0FhbeXDuGWvRQc5xOUmpcjs9KllbtmE
+
+###
+
+PUT http://localhost:8000/products/98dad379-a724-48dc-9a66-4baff4378b9f HTTP/1.1
+Content-Type: application/json
+
+{
+    "name":"Coalhada Sal",
+    "price":12.0
+}
+
+###
+
+DELETE http://localhost:8000/products/98dad379-a724-48dc-9a66-4baff4378b9f HTTP/1.1

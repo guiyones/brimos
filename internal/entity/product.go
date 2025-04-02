@@ -16,8 +16,14 @@ var (
 
 type Product struct {
 	ID    entity.ID `json:"id"`
-	Name  string    `json:"name"`
+	Name  string    `json:"name"` //description
 	Price float64   `json:"price"`
+
+	// category
+	// subCategory
+	// product code
+	// unit
+	// NCM
 }
 
 func NewProduct(name string, price float64) (*Product, error) {

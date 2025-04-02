@@ -8,26 +8,15 @@ import (
 var cfg *conf
 
 type conf struct {
-	DBConf     *DBConf
-	ServerConf *ServerConf
-	JWTConf    *JWTConf
-}
-
-type DBConf struct {
 	DBDriver   string `mapstructure:"DB_DRIVER"`
 	DBHost     string `mapstructure:"DB_HOST"`
 	DBPort     string `mapstructure:"DB_PORT"`
 	DBUser     string `mapstructure:"DB_USER"`
 	DBPassword string `mapstructure:"DB_PASSWORD"`
 	DBName     string `mapstructure:"DB_NAME"`
-}
 
-type ServerConf struct {
 	WebServerPort string `mapstructure:"WEB_SERVER_PORT"`
-}
 
-// Authentication Token
-type JWTConf struct {
 	JWTSecret    string `mapstructure:"JWT_SECRET"`
 	JWTExpiresIn int    `mapstructure:"JWT_EXPIRESIN"`
 	TokenAuth    *jwtauth.JWTAuth
@@ -51,8 +40,7 @@ func LoadConfig(path string) (*conf, error) {
 	}
 
 	// Create token JWT
-	cfg.JWTConf.TokenAuth = jwtauth.New("HS256", []byte(cfg.JWTConf.JWTSecret), nil)
+	cfg.TokenAuth = jwtauth.New("HS256", []byte(cfg.JWTSecret), nil)
 
 	return cfg, nil
-
 }
